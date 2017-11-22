@@ -8,6 +8,7 @@ public class User {
     private String lastName;
     private long profilePictureId;
     private long infoId;
+    private Info info;
     private int flag;
     private long lastEditTime;
     private long creationTime;
@@ -109,6 +110,20 @@ public class User {
 
     public long getInfoId() {
         return infoId;
+    }
+
+
+
+
+    public void setInfo(Info info) {
+        this.info = info;
+    }
+
+
+
+
+    public Info getInfo() {
+        return this.info;
     }
 
 
