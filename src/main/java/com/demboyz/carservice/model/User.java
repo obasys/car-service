@@ -1,16 +1,29 @@
 package com.demboyz.carservice.model;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "users")
 public class User {
 
-
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id")
     private long id;
+    @Column(name = "first_name")
     private String firstName;
+    @Column(name = "last_name")
     private String lastName;
+    @Column(name = "profile_picture_id")
     private long profilePictureId;
+    @Column(name = "info_id")
     private long infoId;
     private Info info;
+    @Column(name = "flag")
     private int flag;
+    @Column(name = "last_edit_time")
     private long lastEditTime;
+    @Column(name = "creation_time")
     private long creationTime;
 
 
@@ -166,6 +179,16 @@ public class User {
 
     public long getCreationTime() {
         return creationTime;
+    }
+
+
+
+
+    @Override
+    public String toString() {
+        return "User [id = " + id + ", firstName = " + firstName + ", lastName = " + lastName +
+               ", profilePictureId = " + profilePictureId + ", infoId = " + infoId + ", flag = " + flag +
+               ", lastEditTime = " + lastEditTime + ", creationTime = " + creationTime + "]";
     }
 
 
