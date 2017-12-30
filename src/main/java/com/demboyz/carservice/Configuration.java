@@ -15,7 +15,6 @@ import java.util.Properties;
 
 public class Configuration {
 
-
     @Bean
     @Autowired
     public EntityManagerFactory entityManagerFactory(DataSource dataSource) {
@@ -36,8 +35,6 @@ public class Configuration {
         return localContainerEntityManagerFactoryBean.getObject();
     }
 
-
-
     @Bean
     @Autowired
     public PlatformTransactionManager transactionManager(EntityManagerFactory entityManagerFactory) {
@@ -45,8 +42,5 @@ public class Configuration {
         jpaTransactionManager.setEntityManagerFactory(entityManagerFactory);
         return jpaTransactionManager;
     }
-
-
-
 
 }
