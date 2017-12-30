@@ -51,7 +51,7 @@ public class UserController {
         User user = new User(1, "test", "test", 1, 1, 1, 1, 1);
         Info info = new Info(1, "test@gmail.com");
 
-        user.setInfo(info);
+        //user.setInfo(info);
 
         return user;
     }
@@ -72,10 +72,10 @@ public class UserController {
         Info info3 = new Info(3, "test3@gmail.com");
         Info info4 = new Info(4, "test4@gmail.com");
 
-        user.setInfo(info);
+        /*user.setInfo(info);
         user2.setInfo(info2);
         user3.setInfo(info3);
-        user4.setInfo(info4);
+        user4.setInfo(info4);*/
 
         User[] users = new User[] {user, user2, user3, user4};
 

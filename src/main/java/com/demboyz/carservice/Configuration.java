@@ -24,7 +24,7 @@ public class Configuration {
 
         Properties jpaProperties = new Properties();
         jpaProperties.setProperty("hibernate.show_sql", "true");
-        jpaProperties.setProperty("hibernate.dialect", "org.hibernate.spatial.dialect.postgis.PostgisDialect");
+        jpaProperties.setProperty("hibernate.dialect", "org.hibernate.dialect.PostgreSQLDialect");
 
         LocalContainerEntityManagerFactoryBean localContainerEntityManagerFactoryBean = new LocalContainerEntityManagerFactoryBean();
         localContainerEntityManagerFactoryBean.setJpaVendorAdapter(vendorAdapter);
@@ -35,7 +35,6 @@ public class Configuration {
 
         return localContainerEntityManagerFactoryBean.getObject();
     }
-
 
 
 
