@@ -2,6 +2,8 @@ package com.demboyz.carservice;
 
 import com.demboyz.carservice.model.User;
 import com.demboyz.carservice.model.Info;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -9,10 +11,12 @@ import org.springframework.web.bind.annotation.*;
 import java.util.concurrent.atomic.AtomicLong;
 
 @Controller
+@EnableAutoConfiguration
 @RequestMapping("/users")
 public class UserController {
 
 
+    // Test bullshit
     private final AtomicLong id = new AtomicLong();
     private static final String firstName = "testFirstName";
     private static final String lastName = "testLastName";
@@ -23,41 +27,37 @@ public class UserController {
     private static final long creationTime = 1;
 
 
-
-
     @RequestMapping("/test")
     @ResponseBody
     public User user() {
         return new User(id.incrementAndGet(), firstName, lastName, profilePictureId, infoId, flag, lastEditTime, creationTime);
     }
+    // End of test bullshit
 
 
-
+    @Autowired
+    UserRepository userRepository;
 
     @RequestMapping(method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.CREATED)
     @ResponseBody
-    public Long create(@RequestBody User user) {
-        // TODO <--
-        return Long.valueOf(-1);
+    public void createUser(@RequestBody User user) {
+        userRepository.save(user);
+        //return Long.valueOf(-1);
     }
-
-
-
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = "application/json")
     @ResponseBody
-    public User getUser() {
-        User user = new User(1, "test", "test", 1, 1, 1, 1, 1);
-        Info info = new Info(1, "test@gmail.com");
+    public User getUser(@PathVariable long id) {
+        //User user = new User(1, "test", "test", 1, 1, 1, 1, 1);
+        //Info info = new Info(1, "test@gmail.com");
 
         //user.setInfo(info);
 
-        return user;
+        //return user;
+
+        return userRepository.findOne(id);
     }
-
-
-
 
     @RequestMapping(method = RequestMethod.GET, produces = "application/json")
     @ResponseBody
@@ -83,25 +83,16 @@ public class UserController {
         return users;
     }
 
-
-
-
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
     @ResponseStatus(HttpStatus.OK)
-    public void update(@PathVariable( "id" ) Long id, @RequestBody User user) {
+    public void updateUser(@PathVariable("id") Long id, @RequestBody User user) {
         // TODO <--
     }
-
-
-
 
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     @ResponseStatus(HttpStatus.OK)
-    public void delete(@PathVariable("id") Long id) {
-        // TODO <--
+    public void deleteUser(@PathVariable("id") Long id) {
+        userRepository.delete(id);
     }
-
-
-
 
 }
