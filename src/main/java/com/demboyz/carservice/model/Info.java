@@ -1,9 +1,19 @@
 package com.demboyz.carservice.model;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "users")
 public class Info {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id")
     private long id;
+
+    @Column(name = "email")
     private String email;
+
     // Will discuss this later
     //private long[] phone_number;
     //private long facebook_uuid;
